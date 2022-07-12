@@ -18,51 +18,43 @@ namespace Task1.Utilities
    public class Base
     {
         public IWebDriver driver;
+
         [OneTimeSetUp]
         public void OpenBrowser()
         {
-
             String browserName = ConfigurationManager.AppSettings["browser"];
             InitBrowser(browserName);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             driver.Manage().Window.Maximize();
-            driver.Url = "https://www.flipkart.com/";
-
-                     
+            driver.Url = "https://www.flipkart.com/";                    
         }
-        
-        
-
+            
         public IWebDriver getDriver ()
         {
             return driver;
         }
 
-
         public void InitBrowser (string browserName)
         {
-
             switch (browserName)
             {
-
                 case "Chrome":
                 new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
                 driver = new ChromeDriver();
-                    break;
+                break;
 
                 case "Firefox":
-                    new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig());
-                    driver = new FirefoxDriver();
-                    break;
+                new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig());
+                driver = new FirefoxDriver();
+                break;
 
                 case "Edge":
-                    new WebDriverManager.DriverManager().SetUpDriver(new EdgeConfig());
-                    driver = new EdgeDriver();
-                    break;
-
+                new WebDriverManager.DriverManager().SetUpDriver(new EdgeConfig());
+                driver = new EdgeDriver();
+                break;
             }
-
         }
+
         [OneTimeTearDown]
         public void closeBrowser()
         {

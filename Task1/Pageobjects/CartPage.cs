@@ -15,12 +15,13 @@ namespace Task1.Pageobjects
         public CartPage(IWebDriver driver)
         {
             this.driver = driver;
-           
         }
 
         private static By scroll = By.XPath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/form[1]/button[1]");
-       private static By remove = By.XPath("//div[contains(text(),'Remove')]");
+        private static By remove = By.XPath("//div[contains(text(),'Remove')]");
         private static By yesRemove = By.XPath("(//div[@class='_3dsJAO _24d-qY FhkMJZ'])[1]");
+        private static By logo = By.XPath("//a[@href='/']");
+
         public void explicitWait()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(8));
@@ -33,14 +34,20 @@ namespace Task1.Pageobjects
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView(true);", validScroll);
         }
+
         public IWebElement getRemove()
         {
             return driver.FindElement(remove);
         }
+
         public IWebElement getYesRemove()
         {
             return driver.FindElement(yesRemove);
         }
 
+        public IWebElement getLogo()
+        {
+            return driver.FindElement(logo);
+        }
     }
 }
