@@ -60,15 +60,15 @@ namespace Task1
         public void cartPage()
         {
             CartPage cartpage = new CartPage(getDriver());
-            ProductDescrptionPage pdp = new ProductDescrptionPage(getDriver());
             cartpage.explicitWait();
             cartpage.scrolls();
-            string beforeRemoving = pdp.getMycart().Text;
+            string beforeRemoving = cartpage.getMycart().Text;          
             cartpage.getRemove().Click();
             Thread.Sleep(2000);
             cartpage.getYesRemove().Click();
-            string afterRemoving = pdp.getMycart().Text;
-            Assert.AreNotEqual(afterRemoving, beforeRemoving);
+            string afterRemoving = "My Cart";           
+            Assert.AreNotEqual(afterRemoving,beforeRemoving);
+
         }
 
         [Test, Order(6)]
