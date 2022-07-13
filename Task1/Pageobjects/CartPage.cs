@@ -21,6 +21,7 @@ namespace Task1.Pageobjects
         private static By remove = By.XPath("//div[contains(text(),'Remove')]");
         private static By yesRemove = By.XPath("(//div[@class='_3dsJAO _24d-qY FhkMJZ'])[1]");
         private static By logo = By.XPath("//a[@href='/']");
+        private static By mycart = By.XPath("(//div[@class='_3g_HeN'])[1]");
 
         public void explicitWait()
         {
@@ -48,6 +49,11 @@ namespace Task1.Pageobjects
         public IWebElement getLogo()
         {
             return driver.FindElement(logo);
+        }
+
+        public IWebElement getMycart()
+        {
+            return driver.FindElement(mycart);
         }
     }
 }
