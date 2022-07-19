@@ -17,7 +17,7 @@ namespace Task1.Pageobjects
             this.driver = driver;
         }
 
-        private static By scroll = By.XPath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/form[1]/button[1]");
+        private static By scroll = By.CssSelector("div[class='_22qcVs _2EGuYt col col-4-12'] span:nth-child(1)");
         private static By remove = By.XPath("//div[contains(text(),'Remove')]");
         private static By yesRemove = By.XPath("(//div[@class='_3dsJAO _24d-qY FhkMJZ'])[1]");
         private static By logo = By.XPath("//a[@href='/']");

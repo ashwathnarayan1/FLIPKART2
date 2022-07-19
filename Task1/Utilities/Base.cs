@@ -47,9 +47,12 @@ namespace Task1.Utilities
         {
             String browserName = ConfigurationManager.AppSettings["browser"];
             InitBrowser(browserName);
+            //test.Log(Status.Info, "Browser Launched");
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             driver.Manage().Window.Maximize();
-            driver.Url = "https://www.flipkart.com/";                    
+            //test.Log(Status.Info, "Browser Window Maximized");
+            driver.Url = "https://www.flipkart.com/";
+            //test.Log(Status.Info, "Url Entered");
         }
             
         public IWebDriver getDriver ()
@@ -82,7 +85,7 @@ namespace Task1.Utilities
         public void afterTest()
         {
             var status = TestContext.CurrentContext.Result.Outcome.Status;
-            var stackTrace = TestContext.CurrentContext.Result.StackTrace;
+            //var stackTrace = TestContext.CurrentContext.Result.StackTrace;
            
             DateTime time = DateTime.Now;
             String fileName = "Screenshot_" + time.ToString("h_mm_ss") + ".png";
@@ -90,11 +93,11 @@ namespace Task1.Utilities
             if (status == TestStatus.Failed)
             {
                 test.Fail("Test failed", captureScreenShot(driver, fileName));
-                test.Log(Status.Fail, "test failed with logtrace" + stackTrace);
+                //test.Log(Status.Fail, "test failed with logtrace" + stackTrace);
             }
             else if (status == TestStatus.Passed)
             {
-
+                test.Pass("Test passed");
             }
             extent.Flush();
         }
