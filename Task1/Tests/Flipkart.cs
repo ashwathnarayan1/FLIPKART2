@@ -10,6 +10,7 @@ using System.Threading;
 using Task1.Pageobjects;
 using Task1.Utilities;
 using WebDriverManager.DriverConfigs.Impl;
+using AventStack.ExtentReports;
 
 namespace Task1
 {
@@ -20,9 +21,12 @@ namespace Task1
         {
             HomePage hp = new HomePage(getDriver());
             hp.validLogin("9738020725", "ashwathnarayan");
-            Thread.Sleep(3000);
+            test.Log(Status.Info, "Phone Number & password entered successfully");
+            test.Log(Status.Info, "Clicked on LogIn button");
+           Thread.Sleep(3000);
             dynamic actual = driver.FindElement(By.XPath("//div[contains(text(),'ASHWATH')]"));
-            Assert.AreEqual("ASHWATH", actual.Text);
+           Assert.AreEqual("ASHWATH", actual.Text);
+            test.Log(Status.Info, "LogIn successful");
         }
 
         [Test, Order(2)]
@@ -31,10 +35,13 @@ namespace Task1
             HomePage hp = new HomePage(getDriver());
             hp.explicitWait();
             hp.validSearch("SAMSUNG Galaxy M32");
+            test.Log(Status.Info, "Product name entered in search box");
+            test.Log(Status.Info, "Clicked on search button");
             string actualtext = hp.getText().Text;
             string[] splittedActualText = actualtext.Split("5G");
             string trimmedActualText = splittedActualText[0].Trim();
             Assert.AreEqual("SAMSUNG Galaxy M32", trimmedActualText);
+            test.Log(Status.Info, "Search successful");
         }
 
         [Test, Order(3)]
@@ -43,6 +50,7 @@ namespace Task1
             ProductsPage pp = new ProductsPage(getDriver());
             pp.explicitWait();
             pp.getClick().Click();
+            test.Log(Status.Info, "Clicked on product");
         }
 
         [Test, Order(4)]
@@ -51,9 +59,12 @@ namespace Task1
             driver.SwitchTo().Window(driver.WindowHandles[1]);
             ProductDescrptionPage pdp = new ProductDescrptionPage(getDriver());
             string beforeAddingToCart = "My Cart";
+            test.Log(Status.Info, "Product description available");
             pdp.clickToAddToCart();
+            test.Log(Status.Info, "Clicked on Add to cart");
             string afterAddingToCart = pdp.getMycart().Text;
             Assert.AreNotEqual(afterAddingToCart, beforeAddingToCart);
+            test.Log(Status.Info, "Product added to cart successfully");
         }
 
         [Test, Order(5)]
@@ -64,10 +75,12 @@ namespace Task1
             cartpage.scrolls();
             string beforeRemoving = cartpage.getMycart().Text;          
             cartpage.getRemove().Click();
+            test.Log(Status.Info, "Clicked on Remove button");
             Thread.Sleep(2000);
             cartpage.getYesRemove().Click();
             string afterRemoving = "My Cart";           
             Assert.AreNotEqual(afterRemoving,beforeRemoving);
+            test.Log(Status.Info, "Product removed successfully");
 
         }
 
@@ -80,6 +93,7 @@ namespace Task1
             Thread.Sleep(3000);
             HomePage hp = new HomePage(getDriver());
             hp.scrollingDownFunc();
+            test.Log(Status.Info, "scrolled down to bottom of the Homepage");
         }
 
         [Test, Order(7)]
@@ -87,6 +101,10 @@ namespace Task1
         {
             HomePage hp = new HomePage(getDriver());
             hp.logout();
+            test.Log(Status.Info, "Clicked on LogOut button");
+            IWebElement actuallogOutText = driver.FindElement(By.XPath("//a[contains(text(),'Login')]"));
+            Assert.AreEqual("Login", actuallogOutText.Text);
+            test.Log(Status.Info, "LogOut successful");
         }
     }
 }
