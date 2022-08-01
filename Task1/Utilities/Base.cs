@@ -22,7 +22,7 @@ namespace Task1.Utilities
    public class Base
     {
         public ExtentReports extent;
-        public ExtentTest test;
+        public ExtentTest test ;
         public IWebDriver driver;
 
         [OneTimeSetUp]
@@ -33,18 +33,18 @@ namespace Task1.Utilities
             String reportPath = projectDirectory + "//index.html";
             var htmlReporter = new ExtentHtmlReporter(reportPath);
             extent = new ExtentReports();
-            extent.AttachReporter(htmlReporter);          
+            extent.AttachReporter(htmlReporter);         
         }
 
         [SetUp]
-        public void setup1()
+        public void Setup1 ()
         {
-            test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
+           test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
         [OneTimeSetUp]
         public void OpenBrowser()
-        {
+        {           
             String browserName = ConfigurationManager.AppSettings["browser"];
             InitBrowser(browserName);
             //test.Log(Status.Info, "Browser Launched");
@@ -55,7 +55,7 @@ namespace Task1.Utilities
             //test.Log(Status.Info, "Url Entered");
         }
             
-        public IWebDriver getDriver ()
+        public IWebDriver GetDriver ()
         {
             return driver;
         }
@@ -82,7 +82,7 @@ namespace Task1.Utilities
         }
 
         [TearDown]
-        public void afterTest()
+        public void AfterTest ()
         {
             var status = TestContext.CurrentContext.Result.Outcome.Status;
             //var stackTrace = TestContext.CurrentContext.Result.StackTrace;
@@ -111,7 +111,7 @@ namespace Task1.Utilities
         }
 
         [OneTimeTearDown]
-        public void closeBrowser()
+        public void CloseBrowser ()
         {
             Thread.Sleep(2000);
             driver.Quit();

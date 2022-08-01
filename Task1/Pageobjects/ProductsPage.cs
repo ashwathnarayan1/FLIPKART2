@@ -23,7 +23,7 @@ namespace Task1.Pageobjects
             return driver.FindElement(clickOn);
         }
 
-        public void explicitWait()
+        public void ExplicitWait ()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(8));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[@class='_2I9KP_'][1]")));
