@@ -33,7 +33,7 @@ namespace Task1
         }
 
         [Test, Order(2)]
-        public void VerifyUserIsAbleToSearchAnItem ()
+        public void VerifyUserIsAbleToSearchAnItem()
         {
             HomePage hp = new HomePage(GetDriver());
             hp.ExplicitWait();
@@ -50,7 +50,7 @@ namespace Task1
         }
 
         [Test, Order(3)]
-        public void VerifyUserIsAbleToClickOnItem ()
+        public void VerifyUserIsAbleToClickOnItem()
         {
             ProductsPage pp = new ProductsPage(GetDriver());
             pp.ExplicitWait();
@@ -61,7 +61,7 @@ namespace Task1
         }
 
         [Test, Order(4)]
-        public void VerifyUserIsAbleToAddItemToCart ()
+        public void VerifyUserIsAbleToAddItemToCart()
         {
             driver.SwitchTo().Window(driver.WindowHandles[1]);
             ProductDescrptionPage pdp = new ProductDescrptionPage(GetDriver());
@@ -95,6 +95,19 @@ namespace Task1
         }
 
         [Test, Order(6)]
+        public void VerifyMobileOptionsUnderElectronics()
+        {
+            CartPage cartpage = new CartPage(GetDriver());
+            Actions a = new Actions(driver);
+            a.MoveToElement(cartpage.GetLogo()).Click().Perform();           
+            HomePage hp = new HomePage(GetDriver());
+            hp.ClickOnMobiles();
+            Thread.Sleep(2000);
+            MobilesPage mp = new MobilesPage(GetDriver());
+            mp.MobilesUnderElectronics();
+        }
+
+        [Test, Order(7)]
         public void VerifyUserIsAbleToScrollDown ()
         {
             CartPage cartpage = new CartPage(GetDriver());
@@ -104,9 +117,9 @@ namespace Task1
             HomePage hp = new HomePage(GetDriver());
             hp.ScrollingDownFunc();
             test.Log(Status.Info, "scrolled down to bottom of the Homepage");
-        }
+        }       
 
-        [Test, Order(7)]
+        [Test, Order(8)]
         public void VerifyUserIsAbleToLogout ()
         {
             HomePage hp = new HomePage(GetDriver());

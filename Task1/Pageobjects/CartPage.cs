@@ -23,35 +23,35 @@ namespace Task1.Pageobjects
         private static By logo = By.XPath("//a[@href='/']");
         private static By mycart = By.XPath("(//div[@class='_3g_HeN'])[1]");
 
-        public void ExplicitWait ()
+        public void ExplicitWait()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(8));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//div[@class='_3dsJAO'][2]")));
         }
 
-        public void Scrolls ()
+        public void Scrolls()
         {
             IWebElement validScroll = driver.FindElement(scroll);
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView(true);", validScroll);
         }
 
-        public IWebElement GetRemove ()
+        public IWebElement GetRemove()
         {
             return driver.FindElement(remove);
         }
 
-        public IWebElement GetYesRemove ()
+        public IWebElement GetYesRemove()
         {
             return driver.FindElement(yesRemove);
         }
 
-        public IWebElement GetLogo ()
+        public IWebElement GetLogo()
         {
             return driver.FindElement(logo);
         }
 
-        public IWebElement GetMycart ()
+        public IWebElement GetMycart()
         {
             return driver.FindElement(mycart);
         }

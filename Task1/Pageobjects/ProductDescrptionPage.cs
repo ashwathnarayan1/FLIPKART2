@@ -18,12 +18,12 @@ namespace Task1.Pageobjects
         private static By cart = By.XPath("//button[@class='_2KpZ6l _2U9uOA _3v1-ww']");
         private static By mycart = By.XPath("(//div[@class='_3g_HeN'])[1]");
 
-        public void ClickToAddToCart ()
+        public void ClickToAddToCart()
         {
             driver.FindElement(cart).Click();
         }
 
-        public IWebElement GetMycart ()
+        public IWebElement GetMycart()
         {
             return driver.FindElement(mycart);
         }
