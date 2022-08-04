@@ -12,8 +12,8 @@ namespace Task1.Pageobjects
 {
     class HomePage
     {
-        private  IWebDriver driver;
-        public HomePage (IWebDriver driver)
+        private IWebDriver driver;
+        public HomePage(IWebDriver driver)
         {
             this.driver = driver;
         }
@@ -26,27 +26,28 @@ namespace Task1.Pageobjects
         private static By footerLink = By.LinkText("YouTube");
         private static By name = By.XPath("(//div[contains(text(),'ASHWATH')])[1]");
         private static By logoutPress = By.XPath("//a[@href='#']");
+        private static By mobiles = By.XPath("//img[@alt='Mobiles']");
 
-        public void ValidLogin (string pnum, string pass)
+        public void ValidLogin(string pnum, string pass)
         {
             driver.FindElement(phNo).SendKeys(pnum);
             driver.FindElement(password).SendKeys(pass);
             driver.FindElement(signIn).Click();
         }
 
-        public void ValidSearch (string find)
+        public void ValidSearch(string find)
         {
             driver.FindElement(search).SendKeys(find);
             Thread.Sleep(2000);
             driver.FindElement(search).SendKeys(Keys.Enter);
         }
 
-        public IWebElement GetText ()
+        public IWebElement GetText()
         {
             return driver.FindElement(text);
         }
 
-        public void ScrollingDownFunc ()
+        public void ScrollingDownFunc()
         {
             IWebElement scrollToFooter = driver.FindElement(footerLink);
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
@@ -54,13 +55,18 @@ namespace Task1.Pageobjects
             Thread.Sleep(2000);
         }
 
-        public void ExplicitWait ()
+        public void ClickOnMobiles()
+        {
+            driver.FindElement(mobiles).Click();
+        }
+
+        public void ExplicitWait()
         {
             WebDriverWait wait = new(driver, TimeSpan.FromSeconds(8));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[@class='_3704LK']")));
         }
 
-        public void Logout ()
+        public void Logout()
         {
             Actions a = new Actions(driver);
             a.MoveToElement(driver.FindElement(name)).Perform();
@@ -69,4 +75,5 @@ namespace Task1.Pageobjects
         }
     }
 }
+
 
