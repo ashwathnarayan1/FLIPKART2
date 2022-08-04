@@ -11,6 +11,7 @@ using Task1.Pageobjects;
 using Task1.Utilities;
 using WebDriverManager.DriverConfigs.Impl;
 using AventStack.ExtentReports;
+using System.Collections;
 
 namespace Task1
 {
@@ -105,6 +106,11 @@ namespace Task1
             Thread.Sleep(2000);
             MobilesPage mp = new MobilesPage(GetDriver());
             mp.MobilesUnderElectronics();
+            ArrayList actualresult = mp.GetActualMobiles();
+            ArrayList expectedresult = mp.GetExpectedMobiles();
+            Assert.AreEqual(expectedresult, actualresult);
+            test.Log(Status.Info, "Expected result : Mobile options should be visible under Electronics dropdown");
+            test.Log(Status.Info, "Outcome : Mobile options are visible under Electronics dropdown");
         }
 
         [Test, Order(7)]
