@@ -66,7 +66,7 @@ namespace Task1
         {
             driver.SwitchTo().Window(driver.WindowHandles[1]);
             ProductDescrptionPage pdp = new ProductDescrptionPage(GetDriver());
-            string beforeAddingToCart = "My Cart";
+            string beforeAddingToCart = "Flipkart";
             test.Log(Status.Info, "Product description available");
             pdp.ClickToAddToCart();
             test.Log(Status.Info, "Clicked on Add to cart");
@@ -88,7 +88,7 @@ namespace Task1
             test.Log(Status.Info, "Clicked on Remove button");
             Thread.Sleep(2000);
             cartpage.GetYesRemove().Click();
-            string afterRemoving = "My Cart";           
+            string afterRemoving = "Flipkart";           
             Assert.AreNotEqual(afterRemoving,beforeRemoving);
             test.Log(Status.Info, "Expected result : Selected product should not be visible in cart");
             test.Log(Status.Info, "Outcome : Selected product is not visible in cart");
@@ -100,7 +100,8 @@ namespace Task1
         {
             CartPage cartpage = new CartPage(GetDriver());
             Actions a = new Actions(driver);
-            a.MoveToElement(cartpage.GetLogo()).Click().Perform();           
+            a.MoveToElement(cartpage.GetLogo()).Click().Perform();
+            Thread.Sleep(2000);
             HomePage hp = new HomePage(GetDriver());
             hp.ClickOnMobiles();
             Thread.Sleep(2000);

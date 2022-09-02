@@ -19,9 +19,9 @@ namespace Task1.Pageobjects
 
         private static By scroll = By.CssSelector("div[class='_22qcVs _2EGuYt col col-4-12'] span:nth-child(1)");
         private static By remove = By.XPath("//div[contains(text(),'Remove')]");
-        private static By yesRemove = By.XPath("(//div[@class='_3dsJAO _24d-qY FhkMJZ'])[1]");
+        private static By yesRemove = By.CssSelector("._3dsJAO._24d-qY.FhkMJZ");
         private static By logo = By.XPath("//a[@href='/']");
-        private static By mycart = By.XPath("(//div[@class='_3g_HeN'])[1]");
+        private static By mycart = By.CssSelector("._2FYYw1._2_OGP3._2T1qz2");
 
         public void ExplicitWait()
         {
